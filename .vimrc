@@ -64,8 +64,7 @@ set hlsearch
 " カラースキーム
 let g:hybrid_use_iTerm_colors = 1
 colorscheme hybrid
-" ダーク系のカラースキームを使う
-" set background=dark
+set background=dark
 
 " 永続的Undoを有効にする
 if has("persistent_undo")

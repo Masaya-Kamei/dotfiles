@@ -3,5 +3,5 @@
 dotfiles=(.zshrc .fzfrc .vimrc)
 
 for file in "${dotfiles[@]}"; do
-        ln -svf $file ~/
+        ln -svf ~/dotfiles/$file ~/
 done

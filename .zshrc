@@ -51,7 +51,7 @@ autoload -Uz _zinit
 zinit light zsh-users/zsh-autosuggestions
 # シンタックスハイライト
 zinit light zdharma/fast-syntax-highlighting
-# クローンしたGit作業ディレクトリで、コマンド `git open` を実行するとブラウザでGitHubが開く
+# クローンしたGitディレクトリで、`git open` を実行するとブラウザでGitHubが開く
 zinit light paulirish/git-open
 # iTerm2を使っている場合に、コマンド `tt タブ名` でタブ名を変更できる
 zinit light gimbo/iterm2-tabs.zsh
@@ -64,6 +64,8 @@ zinit light zsh-users/zsh-completions
 zinit light agkozak/zsh-z
 # ターミナルのディレクトリ移動を高速化
 zinit light b4b4r07/enhancd
+# gitディレクトリのroot	に移動
+zinit light mollifier/cd-gitroot
 # プロンプトテーマ :pure
 zinit light sindresorhus/pure
 
@@ -80,7 +82,7 @@ setopt share_history
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # hook chpwd :カレントディレクトリが変更したとき
-function chpwd() { ls }
+function chpwd() { ls -FG }
 
 alias gwww='gcc -Wall -Wextra -Werror'
 alias norm="~/.norminette/norminette.rb"
@@ -120,3 +122,4 @@ alias d='docker'
 alias dco='docker-compose'
 alias k='kubectl'
 alias rm='gomi'
+alias cdu='cd-gitroot'
