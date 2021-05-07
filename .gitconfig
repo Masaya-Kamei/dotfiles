@@ -1,0 +1,17 @@
+[user]
+	name = Masaya Kamei
+	email = km9smc6@gmail.com
+[alias]
+	ci = commit
+	st = status
+	br = branch
+	co = checkout
+
+[pager]
+	# diff-so-fancy :diffの結果を見やすくする
+	# -R :可能な限り画面表示を正しく維持する
+	# -F :一画面で表示できる場合はすぐに終了する
+	# -X :less 終了時に画面をクリアしない。
+	diff = "diff-so-fancy | less --tabs=4 -RFX"
+[interactive]
+	diffFilter = diff-so-fancy --patch
