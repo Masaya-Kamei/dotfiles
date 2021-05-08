@@ -49,13 +49,16 @@ autoload -Uz _zinit
 
 # 補完
 zinit light zsh-users/zsh-autosuggestions
+# ctrl+Enter で提案を実行
+# iterm2 で ctrl+Enter -> ^[M とキーバインド
+bindkey '^[M' autosuggest-execute
 # シンタックスハイライト
 zinit light zdharma/fast-syntax-highlighting
-# クローンしたGitディレクトリで、`git open` を実行するとブラウザでGitHubが開く
+# git open :クローンしたGitディレクトリをGitHubで開く
 zinit light paulirish/git-open
-# iTerm2を使っている場合に、コマンド `tt タブ名` でタブ名を変更できる
+# tt タブ名 :タブ名を変更する(iTerm2)
 zinit light gimbo/iterm2-tabs.zsh
-# Gitの変更状態がわかる ls。ls の代わりにコマンド `k` を実行するだけ。
+# k :Gitの変更状態がわかる ls
 # k -> kk
 zinit light supercrabtree/k
 # 補完を強化
