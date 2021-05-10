@@ -1,5 +1,5 @@
 find_root() { find / -name System -prune -o $* -print 2>/dev/null }
-git_commit_m() { git commit -m $* }
+git_commit_m() { git commit -m "$*" }
 
 makescript() {
 	if [ $# -ne 2 ]; then
