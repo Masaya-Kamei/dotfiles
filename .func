@@ -1,4 +1,4 @@
-find_root() { find / -name System -prune -o $@ -print 2>/dev/null }
+find_root() { find / -name System -prune -o $* -print 2>/dev/null }
 git_commit_m() { git commit -m $* }
 
 makescript() {
@@ -29,4 +29,23 @@ google() {
     fi
     local url="https://google.co.jp/search?q=${*// /+}"
 	open $url -a "Google Chrome"
+}
+
+find_memo_txt() {
+	grep -rin $* --include='*.txt' ~/Documents/memo
+	if [ $? -eq 0 ]; then
+		echo -n $* | pbcopy
+		code ~/Documents/memo
+		grep -rin $* --include='*.txt' ~/Documents/memo | cut -d ":" -f -2 | xargs code -g
+	fi
+}
+
+find_memo_mark() {
+	s="Mark: $*"
+	grep -rin $s --include='*.txt' ~/Documents/memo | cut -d "	" -f 1
+	if [ $? -eq 0 ]; then
+		echo -n $* | pbcopy
+		code ~/Documents/memo
+		grep -rin $s --include='*.txt' ~/Documents/memo | cut -d ":" -f -2 | xargs code -g
+	fi
 }
