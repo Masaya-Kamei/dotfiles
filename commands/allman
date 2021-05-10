@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+echo "
+aman	: alias
+fman	: fzf function
+tman	: terminal shortcut
+vman	: vim shortcut
+"

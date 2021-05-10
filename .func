@@ -1,0 +1,31 @@
+froot() { find / -name System -prune -o $@ -print 2>/dev/null }
+
+makescript() {
+	if [ $# -ne 2 ]; then
+		echo "Usage: makecmd [HistSize] [CommandName]"
+		return 0
+	fi
+	count=$1
+	name=$2
+	expr $count + 1 > /dev/null 2>&1
+	if [ $? -eq 2 ] ; then
+		echo "Usage: makecmd [HistSize] [CommandName]"
+		return 0
+	fi
+	if [ -e $name ]; then
+		echo "File exsits!"
+		return 0
+	fi
+	touch $name
+	history -$count | cut -d " " -f 5- >> $name
+	chmod a+x $name
+}
+
+google() {
+    if [ $(echo $1 | grep "^-[cfs]$") ]; then
+        local opt=$1
+        shift
+    fi
+    local url="https://google.co.jp/search?q=${*// /+}"
+	open $url -a "Google Chrome"
+}

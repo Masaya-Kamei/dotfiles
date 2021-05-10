@@ -31,7 +31,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 # --height :ターミナルの40%, --reverse :逆順, --border :枠で囲む
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-source ~/.fzfrc
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -52,6 +51,7 @@ zinit light zsh-users/zsh-autosuggestions
 # ctrl+Enter で提案を実行
 # iterm2 で ctrl+Enter -> ^[M とキーバインド
 bindkey '^[M' autosuggest-execute
+bindkey '^J' autosuggest-accept
 # シンタックスハイライト
 zinit light zdharma/fast-syntax-highlighting
 # git open :クローンしたGitディレクトリをGitHubで開く
@@ -81,11 +81,43 @@ zinit light sindresorhus/pure
 setopt hist_ignore_all_dups
 # historyを共有
 setopt share_history
+# 余計な空白は除去してhistoryに記録
+setopt hist_reduce_blanks
+# 補完機能を有効にする
+autoload -Uz compinit && compinit
 # タブ補完する際、大文字小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # hook chpwd :カレントディレクトリが変更したとき
-function chpwd() { ls -FG }
+chpwd() { ls -FG }
+
+# export FPATH="$FPATH:/Users/kamei/dotfiles/commands"
+# autoload -Uz makescript
+source ~/dotfiles/.func
+source ~/dotfiles/.fzf_func
+
+my_kill_word() {
+	if [ ${LBUFFER:$#LBUFFER-1:1} = " " -a ${RBUFFER:0:1} != " " ]; then
+		zle forward-word
+		zle vi-backward-kill-word
+	elif [ ${LBUFFER:$#LBUFFER-1:1} != " " -a ${RBUFFER:0:1} = " " ]; then
+		zle vi-backward-kill-word
+	elif [ ${LBUFFER:$#LBUFFER-1:1} != " " -a ${RBUFFER:0:1} != " " ]; then
+		zle forward-word
+		zle vi-backward-kill-word
+	fi
+}
+zle -N my_kill_word
+bindkey '^V' my_kill_word
+
+my_kill_line() { LBUFFER="" }
+zle -N my_kill_line
+bindkey '^U' my_kill_line
+
+bindkey '^[[1;5A' beginning-of-line
+bindkey '^[[1;5B' end-of-line
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 
 alias gwww='gcc -Wall -Wextra -Werror'
 alias norm="~/.norminette/norminette.rb"
@@ -97,7 +129,7 @@ alias ls='ls -FG'
 alias ll='ls -alFG'
 alias c='clear'
 alias m='mkdir'
-alias fn='find 2>/dev/null'
+alias relogin='exec $SHELL -l'
 alias t='tar -xvf'
 alias tgz='tar -zxvf'
 alias txz='tar -Jxvf'
@@ -121,8 +153,12 @@ alias gst='git status'
 alias gco='git checkout'
 alias gf='git fetch'
 alias gc='git commit'
+git_commit_m() { git commit -m "$@" }
+alias gcm='git_commit_m'
 alias d='docker'
 alias dco='docker-compose'
 alias k='kubectl'
 alias rm='gomi'
 alias cdu='cd-gitroot'
+alias ms='makescript'
+alias goo='google'

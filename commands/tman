@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+echo "
+[Terminal]
+Ctrl+u	: 左側にある入力文字を全て消去
+Ctrl+k	: 右側にある入力文字を全て消去
+Ctrl+w	: 左側の文字列を消去
+Ctrl+v	: カーソルの文字列を消去
+Ctrl+y	: 削除した文字列を貼り付ける
+Ctrl+l	: 画面をクリア
+Ctrl+xu	: Undo
+
+[enhancd]
+cd	: 履歴から検索して移動
+cd ..	: 親ディレクトリから検索して移動
+"

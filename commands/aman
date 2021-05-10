@@ -1,0 +1,38 @@
+#!/bin/zsh
+
+echo "
+ls	= ls -FG
+ll	= ls -alFG
+c	= clear
+m	= mkdir
+froot	= find / -name System -prune -o \$@ -print 2>/dev/null
+relogin	= exec \$SHELL -l
+t	= tar -xvf
+tgz	= tar -zxvf
+txz	= tar -Jxvf
+tbz	= tar -jxvf
+C	= | pbcopy
+G	= | grep --color=auto
+H	= | head
+L	= | less --tabs=4 -RFX
+T	= | tail
+W	= | wc -l
+X	= | xargs
+g	= git
+ga	= git add
+gd	= git diff
+gs	= git status
+gp	= git push
+gb	= git branch
+gst	= git status
+gco	= git checkout
+gf	= git fetch
+gc	= git commit
+d	= docker
+dco	= docker-compose
+k	= kubectl
+rm	= gomi
+cdu	= cd-gitroot
+ms	= makescript
+goo = google
+"
