@@ -37,5 +37,5 @@ froot	= find_root
 ms	= makescript
 goo	= google
 fmemo	= find_memo_txt
-fmark	= find_memo_mark
+ftitle	= find_memo_title
 "

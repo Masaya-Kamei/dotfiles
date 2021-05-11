@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 find_root() { find / -name System -prune -o $* -print 2>/dev/null }
 git_commit_m() { git commit -m "$*" }
 
@@ -40,12 +42,13 @@ find_memo_txt() {
 	fi
 }
 
-find_memo_mark() {
-	s="Mark: $*"
-	grep -rin $s --include='*.txt' ~/Documents/memo | cut -d "	" -f 1
-	if [ $? -eq 0 ]; then
-		echo -n $* | pbcopy
-		code ~/Documents/memo
-		grep -rin $s --include='*.txt' ~/Documents/memo | cut -d ":" -f -2 | xargs code -g
+find_memo_title() {
+	g=`grep -rinE "\[-.*$*.*-\]" --include='*.txt' ~/Documents/memo`
+	if [ $? -eq 1 ]; then
+		return 0
 	fi
+	echo $g | cut -d "	" -f 1
+	echo -n $* | pbcopy
+	code ~/Documents/memo
+	grep -rin "\[-.*$*.*-\]" --include='*.txt' ~/Documents/memo | cut -d ":" -f -2 | xargs code -g
 }
