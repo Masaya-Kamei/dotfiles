@@ -10,6 +10,9 @@
 #     PROMPT='%F{$(git_color)}$(git_branch)%f %F{cyan}%c%f $ '
 # fi
 
+# emacs風のキーバインド, vscodeのターミナルで必要
+bindkey -e
+
 # direnv :環境変数をディレクトリ毎に設定
 export EDITOR=vim
 eval "$(direnv hook zsh)"
@@ -120,10 +123,10 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
 alias gwww='gcc -Wall -Wextra -Werror'
-alias norm="~/.norminette/norminette.rb"
-alias normr='~/.norminette/norminette.rb -R CheckForbiddenSourceHeader'
-alias norm_git="git ls-files | xargs ~/.norminette/norminette.rb"
-alias normr_git='git ls-files | xargs ~/.norminette/norminette.rb -R CheckForbiddenSourceHeader'
+alias norm="norminette"
+alias normr='norminette -R CheckForbiddenSourceHeader'
+alias norm_git="git ls-files | xargs norminette"
+alias normr_git='git ls-files | xargs norminette -R CheckForbiddenSourceHeader'
 
 alias ls='ls -FG'
 alias ll='ls -alFG'
