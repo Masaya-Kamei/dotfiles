@@ -75,8 +75,10 @@ endif
 " キーマッピング
 " 括弧を自動補完
 inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><BS><ESC><S-o>
+" inoremap {<Enter> {}<Left><CR><BS><ESC><S-o>
+inoremap {<Enter> {}<Left><CR><CR><Up><Tab>
 inoremap ( ()<Left>
 inoremap [ []<Left>
+inoremap " ""<Left>
 " Ctrl+e で NERDTree を開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
