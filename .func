@@ -34,21 +34,57 @@ google() {
 }
 
 find_memo_txt() {
-	grep -rin $* --include='*.txt' ~/Documents/memo
+	d=~/Documents/memo
+	grep -rin $* --include='*.txt' $d
 	if [ $? -eq 0 ]; then
 		echo -n $* | pbcopy
 		code ~/Documents/memo
-		grep -rin $* --include='*.txt' ~/Documents/memo | cut -d ":" -f -2 | xargs code -g
+		# 行数を開くため、grep -l は使用しない
+		grep -rinE $* --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
 	fi
 }
 
 find_memo_title() {
-	g=`grep -rinE "\[-.*$*.*-\]" --include='*.txt' ~/Documents/memo`
+	# "~/Documents/memo" とダブルクォーテーションで囲むとうまくいかない
+	d=~/Documents/memo
+	# cut コマンドの終了ステータスを使わないようにするため、一度変数に入れる
+	g=`grep -rinE "\[-.*$*.*-\]" --include='*.txt' $d`
 	if [ $? -eq 1 ]; then
 		return 0
 	fi
 	echo $g | cut -d "	" -f 1
 	echo -n $* | pbcopy
-	code ~/Documents/memo
-	grep -rin "\[-.*$*.*-\]" --include='*.txt' ~/Documents/memo | cut -d ":" -f -2 | xargs code -g
+	code $d
+	grep -rinE "\[-.*$*.*-\]" --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
+}
+
+find_sites_title() {
+	d=~/Documents/sites
+	t=translate.google.com
+	# p = ^(?=.*$*)(?!.*$t).*$		($* は含むが、$t は含まない)
+	# p はシングルクォーテーションで囲まれた文字列となる
+	p=`echo -n \^\(\?=\.\*$*\)\(\?\!\.\*$t\)\.\*\$`
+	# ! を使用する際は, ダブルクォーテーションではなく、シングルクォーテーションで囲む
+	# ! -> !の次にくる文字列から始まる一番最近使用したコマンドを自動で呼び出す
+	g=`ggrep -riP $p --include='*.html' $d`
+	if [ $? -eq 1 ]; then
+		return 0
+	fi
+	echo $g | sed -r "s/.*>(.*)<\/A>/\1/"
+	echo -n $* | pbcopy
+	# -P :perl正規表現 (拡張正規表現より、機能が多い)
+	ggrep -riPl $p --include='*.html' $d | xargs open
+}
+
+find_sites_html() {
+	d=~/Documents/sites
+	t=translate.google.com
+	p=`echo -n \^\(\?=\.\*$*\)\(\?\!\.\*$t\)\.\*\$`
+	g=`ggrep -riP $p --include='*.html' $d`
+	if [ $? -eq 1 ]; then
+		return 0
+	fi
+	echo $g | sed -r "s/.*>(.*)<\/A>/\1/"
+	echo -n $* | pbcopy
+	ggrep -riP $p --include='*.html' $d | sed -r "s/.*HREF=\"(.*)\" ADD.*/\1/" | xargs open
 }

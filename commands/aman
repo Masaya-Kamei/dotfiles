@@ -38,4 +38,6 @@ ms	= makescript
 goo	= google
 fmemo	= find_memo_txt
 ftitle	= find_memo_title
+fsites	= find_sites_title
+fhtml	= find_sites_html
 "
