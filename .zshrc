@@ -90,6 +90,8 @@ setopt hist_reduce_blanks
 autoload -Uz compinit && compinit
 # タブ補完する際、大文字小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# direnv のタイムアウト時間を変更
+export DIRENV_WARN_TIMEOUT=100s
 
 # hook chpwd :カレントディレクトリが変更したとき
 chpwd() { ls -FG }
