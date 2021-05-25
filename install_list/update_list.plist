@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!-- launchctl start update_list でいま実行 -->
+<!-- 動かない時は、launchctl list update_list で exitstatus を見る。 -->
+<!-- launchctl start update_list の終了ステータスが0でない場合は、
+     launchctl error <exit code>  でエラーメッセージを取得。 -->
+<dict>
+    <key>Label</key>
+    <string>update_list</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+		<!-- 絶対パスである必要がある。「~」もダメ -->
+        <string>/Users/kamei/dotfiles/install_list/update_list.sh</string>
+    </array>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Weekday</key>
+		<integer>0</integer>
+		<key>Hour</key>
+		<integer>0</integer>
+		<key>Minute</key>
+		<integer>0</integer>
+	</dict>
+    <!-- 標準エラー出力の出力先 -->
+    <key>StandardErrorPath</key>
+    <string>/Users/kamei/dotfiles/install_list/log/update_list.err</string>
+</dict>
+</plist>

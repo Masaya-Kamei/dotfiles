@@ -1,0 +1,126 @@
+{
+	// 保存する際、末尾の空白を削除
+	"files.trimTrailingWhitespace": true,
+	// 保存する際、最終行に空行を入れる。
+	"files.insertFinalNewline": true,
+	// 折り返しする
+	"editor.wordWrap": "on",
+	// エディタレイアウトの保持
+	"workbench.editor.closeEmptyGroups": false,
+	// ターミナルで選択したテキストを自動コピー
+	"terminal.integrated.copyOnSelection": true,
+	// CとC++にGoogleのフォーマッタを使用
+	//"C_Cpp.clang_format_style": "Google",
+	// 保存する際にフォーマットをかける
+	//"editor.formatOnSave": true,
+	// 自動保存
+	//"files.autoSave": "afterDelay",
+	// ターミナルのフォント
+	"terminal.integrated.fontFamily": "Ricty Diminished, monospace",
+	// 他人のファイルの場合、インデントの種類とサイズを引き継がない
+	"editor.detectIndentation": false,
+	// タブによるインデント
+	"editor.insertSpaces": false,
+	// タブのサイズを４
+	"editor.tabSize": 4,
+	// 空白文字を表示
+	"editor.renderWhitespace": "all",
+	"42header.username": "mkamei",
+	"42header.email": "mkamei@student.42tokyo.jp",
+	// 文字間のスペースの大きさを決める
+	// "terminal.integrated.letterSpacing": 1,
+	"terminal.integrated.fontWeightBold": "normal",
+	"terminal.integrated.fontSize": 14,
+	// ファイルを開く際、新規タブで開く
+	// "workbench.editor.enablePreview": false,
+	// 80列目に縦線を入れる
+	"editor.rulers": [ 80 ],
+	"editor.fontFamily": "Ricty Diminished, Menlo, Monaco, 'Courier New', monospace",
+	"editor.fontSize": 14,
+	// 色をrgb表記の後に表示
+	"color-highlight.markerType": "dot-after",
+	// todo-treeのハイライトを無効化、todo-highlightを使う
+	"todo-tree.highlights.enabled": false,
+	// 特定の文字列をハイライトする
+	"highlight.regexes": {
+		// 括弧で囲む必要がある、エスケープは\\
+		"(- .* -\n)": {
+			"regexFlags": "gi", // g:全ての一致を探す,i:大文字小文字を区別しない
+			"filterLanguageRegex": "plaintext",
+			"filterFileRegex": ".*\\.txt",
+			"decorations": [
+				{	// １つ目の括弧
+					"color": "#ffcc00",
+					"fontWeight": "bold"
+					// "overviewRulerColor": "#ff0000",
+					// "backgroundColor": "#ff0000",
+				}
+				// { "color": "red" }	// ２つ目の括弧
+			]
+		},
+		"(\n\\[ .* \\])": {
+			"regexFlags": "gi",
+			"filterLanguageRegex": "plaintext",
+			"filterFileRegex": ".*\\.txt",
+			"decorations": [
+				{
+					"color": "#AFEEEE",
+				}
+			]
+		},
+		"(\n\\http.*)": {
+			"regexFlags": "gi",
+			"filterLanguageRegex": "plaintext",
+			"filterFileRegex": ".*\\.txt",
+			"decorations": [
+				{
+					"color": "#FFE4C4",
+				}
+			]
+		}
+	},
+	// クラッシュしないために最大値を設定
+	"highlight.maxMatches": 250,
+	// TerminalのアプリをiTerm に設定
+	"terminal.external.osxExec": "iTerm.app",
+	"workbench.colorTheme": "Miami",
+	"terminal.explorerKind": "external",
+	"C_Cpp.updateChannel": "Insiders",
+	"vs-kubernetes": {
+		"vscode-kubernetes.minikube-path.mac": "/Users/kamei/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+		"vscode-kubernetes.helm-path.mac": "/Users/kamei/.vs-kubernetes/tools/helm/darwin-amd64/helm"
+	},
+	"markdownlint.config": {
+		// inline HTML を許容する
+		"MD033": false
+	},
+	// export する際、preview の画面をそのまま出力する
+	"markdown-preview-enhanced.printBackground": true,
+	"markdown-preview-enhanced.previewTheme": "vue.css",
+	// ターミナルのカーソルタイプを縦線にする
+	"terminal.integrated.cursorStyle": "line",
+	// Terminal Theme :Eighties
+	"workbench.colorCustomizations": {
+		"terminal.background":"#2D2D2D",
+		"terminal.foreground":"#D3D0C8",
+		"terminalCursor.background":"#D3D0C8",
+		"terminalCursor.foreground":"#0ff4f9",
+		"terminal.ansiBlack":"#2D2D2D",
+		"terminal.ansiBlue":"#6699CC",
+		"terminal.ansiBrightBlack":"#747369",
+		"terminal.ansiBrightBlue":"#6699CC",
+		"terminal.ansiBrightCyan":"#66CCCC",
+		"terminal.ansiBrightGreen":"#99CC99",
+		"terminal.ansiBrightMagenta":"#CC99CC",
+		"terminal.ansiBrightRed":"#F2777A",
+		"terminal.ansiBrightWhite":"#F2F0EC",
+		"terminal.ansiBrightYellow":"#FFCC66",
+		"terminal.ansiCyan":"#66CCCC",
+		"terminal.ansiGreen":"#99CC99",
+		"terminal.ansiMagenta":"#CC99CC",
+		"terminal.ansiRed":"#F2777A",
+		"terminal.ansiWhite":"#D3D0C8",
+		"terminal.ansiYellow":"#FFCC66"
+	},
+	"window.zoomLevel": 0
+}

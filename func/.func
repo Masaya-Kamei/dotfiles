@@ -1,0 +1,149 @@
+#!/bin/zsh
+
+find_root() { find / -name System -prune -o $* -print 2>/dev/null }
+git_commit_m() { git commit -m "$*" }
+
+makescript() {
+	if [ $# -ne 2 ]; then
+		echo "Usage: makecmd [HistSize] [CommandName]"
+		return 0
+	fi
+	count=$1
+	name=$2
+	expr $count + 1 > /dev/null 2>&1
+	if [ $? -eq 2 ] ; then
+		echo "Usage: makecmd [HistSize] [CommandName]"
+		return 0
+	fi
+	if [ -e $name ]; then
+		echo "File exsits!"
+		return 0
+	fi
+	touch $name
+	history -$count | cut -d " " -f 5- >> $name
+	chmod a+x $name
+}
+
+google() {
+    if [ $(echo $1 | grep "^-[cfs]$") ]; then
+        local opt=$1
+        shift
+    fi
+    local url="https://google.co.jp/search?q=${*// /+}"
+	open $url -a "Google Chrome"
+}
+
+memo_text_code() {
+	if [ $# -ne 1 ]; then
+		echo -e "No argument."
+		return 0
+	fi
+	d=~/Documents/memo
+	grep -rin $* --include='*.txt' $d
+	if [ $? -eq 0 ]; then
+		echo -n $* | pbcopy
+		code ~/Documents/memo
+		# 行数を開くため、grep -l は使用しない
+		# xargs を入れないとエラー
+		# なぜなら、パイプで標準入力に変わるので、
+		# それ以前の結果が中身のファイルが渡されて、それをvscodeで開こうとする。
+		grep -rinE $* --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
+	fi
+}
+
+memo_title_code() {
+	if [ $# -ne 1 ]; then
+		echo -e "No argument."
+		return 0
+	fi
+	# "~/Documents/memo" とダブルクォーテーションで囲むとうまくいかない
+	d=~/Documents/memo
+	# cut コマンドの終了ステータスを使わないようにするため、一度変数に入れる
+	g=`grep -rinE "\- .*$*.* \-" --include='*.txt' $d`
+	if [ $? -eq 1 ]; then
+		return 0
+	fi
+	echo $g | cut -d "	" -f 1
+	echo -n $* | pbcopy
+	code $d
+	# 最初にマッチしたコードの場所が開かれる。
+	# なぜなら、codeコマンドに、空白区切りの複数ファイルが渡されるため。
+	grep -rinE "\- .*$*.* \-" --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
+}
+
+memo_title_out() {
+	if [ $# -ne 1 ]; then
+		echo -e "No argument."
+		return 0
+	fi
+	d=~/Documents/memo
+	g=`grep -rilE "\- .*$*.* \-" --include='*.txt' ~/Documents/memo`
+	if [ $? -eq 1 ]; then
+		return 0
+	fi
+	python -c 'print "#" * 80'
+	echo $g | xargs sed -n -E -e "/- .*$*.* -/,/#####/p" | ghead -n -2
+}
+
+grep_memo() {
+  flag=0
+  while read -r line
+  do
+	if [[ $line =~  ┄┄.* ]]; then
+		if [ $flag -eq 1 ]; then
+			python -c 'print "\033[33m" + "-" * 80 + "\033[0m"'
+			flag=0
+		fi
+	fi
+	if [[ $line =~ ┄┄.*$*.* ]]; then
+		flag=1
+	fi
+	if [ $flag -eq 1 ]; then
+		echo $line
+	fi
+  done
+}
+
+memo_md_out() {
+	if [ $# -ne 1 ]; then
+		echo -e "No argument."
+		return 0
+	fi
+	d=~/Documents/memo
+	g=`grep -rilE "## .*$*.*" $d`
+	if [ $? -eq 1 ]; then
+		return 0
+	fi
+	find $d -name "*.md" | xargs mdcat | grep_memo $* | ghead -n -2
+}
+
+# find_sites_title() {
+# 	d=~/Documents/sites
+# 	t=translate.google.com
+# 	# p = ^(?=.*$*)(?!.*$t).*$		($* は含むが、$t は含まない)
+# 	# p はシングルクォーテーションで囲まれた文字列となる
+# 	p=`echo -n \^\(\?=\.\*$*\)\(\?\!\.\*$t\)\.\*\$`
+# 	# ! を使用する際は, ダブルクォーテーションではなく、シングルクォーテーションで囲む
+# 	# ! -> !の次にくる文字列から始まる一番最近使用したコマンドを自動で呼び出す
+# 	g=`ggrep -riP $p --include='*.html' $d`
+# 	if [ $? -eq 1 ]; then
+# 		return 0
+# 	fi
+# 	echo $g | sed -r "s/.*>(.*)<\/A>/\1/"
+# 	echo -n $* | pbcopy
+# 	# -P :perl正規表現 (拡張正規表現より、機能が多い)
+# 	ggrep -riPl $p --include='*.html' $d | xargs open
+# }
+
+# find_sites_html() {
+# 	d=~/Documents/sites
+# 	t=translate.google.com
+# 	p=`echo -n \^\(\?=\.\*$*\)\(\?\!\.\*$t\)\.\*\$`
+# 	g=`ggrep -riP $p --include='*.html' $d`
+# 	if [ $? -eq 1 ]; then
+# 		return 0
+# 	fi
+# 	echo $g | sed -r "s/.*>(.*)<\/A>/\1/"
+# 	echo -n $* | pbcopy
+# 	ggrep -riP $p --include='*.html' $d | sed -r "s/.*HREF=\"(.*)\" ADD.*/\1/" | xargs open
+# }

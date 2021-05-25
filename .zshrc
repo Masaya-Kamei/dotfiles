@@ -52,8 +52,11 @@ autoload -Uz _zinit
 # 補完
 zinit light zsh-users/zsh-autosuggestions
 # ctrl+Enter で提案を実行
-# iterm2 で ctrl+Enter -> ^[M とキーバインド
+# -> vscodeのterminal でも動くように, karabiner で, ctrl+Enter -> ^[M とバインド
+# ^[M  割り当てなし
 bindkey '^[M' autosuggest-execute
+# ^M  accept-line に割り当てると、Enterが効かなくなる
+# ^J  accept-line
 bindkey '^J' autosuggest-accept
 # シンタックスハイライト
 zinit light zdharma/fast-syntax-highlighting
@@ -77,9 +80,14 @@ zinit light sindresorhus/pure
 
 # 途中まで打ちカーソル上下で補完を切り替えれる
 # zinit light zsh-users/zsh-history-substring-search
+# ^[[A,^[[B  割り当てなし
 # bindkey '^[[A' history-substring-search-up
 # bindkey '^[[B' history-substring-search-down
 
+# メモリに保存される履歴の件数
+export HISTSIZE=1000
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=100000
 # ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
 setopt hist_ignore_all_dups
 # historyを共有
@@ -90,35 +98,65 @@ setopt hist_reduce_blanks
 autoload -Uz compinit && compinit
 # タブ補完する際、大文字小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# タブ幅を４に設定
+tabs -4
+# WORDCHARS にある文字は単語区切り(Ctrl+wなど)の際に無視される。
+# デフォルトでは / が入っているため、ディレクトリ全体が１単語とみなされる。
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # direnv のタイムアウト時間を変更
 export DIRENV_WARN_TIMEOUT=100s
+
+# export FPATH="$FPATH:/Users/kamei/dotfiles/commands"
+# autoload -Uz makescript
+source ~/dotfiles/func/.func
+source ~/dotfiles/func/.fzf_func
 
 # hook chpwd :カレントディレクトリが変更したとき
 chpwd() { ls -FG }
 
-# export FPATH="$FPATH:/Users/kamei/dotfiles/commands"
-# autoload -Uz makescript
-source ~/dotfiles/.func
-source ~/dotfiles/.fzf_func
-
 my_kill_word() {
-	if [ ${LBUFFER:$#LBUFFER-1:1} = " " -a ${RBUFFER:0:1} != " " ]; then
+	if [ -z ${LBUFFER} ]; then return 0
+	elif [ -z ${RBUFFER} ]; then
+		if [ ${LBUFFER:$#LBUFFER-1:1} = " " ]; then return 0
+		else zle backward-kill-word
+		fi
+	elif [ ${LBUFFER:$#LBUFFER-1:1} = " " -a ${RBUFFER:0:1} != " " ]; then
 		zle forward-word
-		zle vi-backward-kill-word
+		zle backward-kill-word
 	elif [ ${LBUFFER:$#LBUFFER-1:1} != " " -a ${RBUFFER:0:1} = " " ]; then
-		zle vi-backward-kill-word
+		zle backward-kill-word
 	elif [ ${LBUFFER:$#LBUFFER-1:1} != " " -a ${RBUFFER:0:1} != " " ]; then
 		zle forward-word
-		zle vi-backward-kill-word
+		zle backward-kill-word
 	fi
 }
 zle -N my_kill_word
+# ^Q, ^S は割り当ててても動作しない
+# ^V  quoted-insert
 bindkey '^V' my_kill_word
 
-my_kill_line() { LBUFFER="" }
-zle -N my_kill_line
-bindkey '^U' my_kill_line
+# ^U kill-whole-line
+bindkey '^U' backward-kill-line
 
+# ^G set-mark-command
+# markをセットして、regionをactiveにする。
+bindkey '^G' set-mark-command
+# region は mark と現在のカーソル位置にはさまれた部分
+function copy-region() {
+    zle copy-region-as-kill
+	echo -n $CUTBUFFER | pbcopy
+	# regionを非アクティブ化
+    REGION_ACTIVE=0
+}
+zle -N copy-region
+# ^Y yank
+# region をコピー
+bindkey "^Y" copy-region
+# ^P up-line-or-history
+# emacs では、yank はペースト
+bindkey "^P" yank
+
+# いずれも割り当てなし
 bindkey '^[[1;5A' beginning-of-line
 bindkey '^[[1;5B' end-of-line
 bindkey '^[[1;5C' forward-word
@@ -167,7 +205,7 @@ alias cdu='cd-gitroot'
 alias froot='find_root'
 alias ms='makescript'
 alias goo='google'
-alias fmemo='find_memo_txt'
-alias ftitle='find_memo_title'
-alias fsites='find_sites_title'
-alias fhtml='find_sites_html'
+alias mtext='memo_text_code'
+alias mtitle='memo_title_code'
+alias mout='memo_title_out'
+alias mdout='memo_md_out'

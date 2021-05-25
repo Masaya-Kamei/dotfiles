@@ -1,16 +1,26 @@
 #!/bin/zsh
 
-echo "
-[Terminal]
-Ctrl+u	: 左側にある入力文字を全て消去
-Ctrl+k	: 右側にある入力文字を全て消去
-Ctrl+w	: 左側の文字列を消去
-Ctrl+v	: カーソルの文字列を消去
-Ctrl+y	: 削除した文字列を貼り付ける
-Ctrl+l	: 画面をクリア
-Ctrl+xu	: Undo
+echo -e "
+\e[36m[ Terminal ]\e[m
+Ctrl + u				: 左側にある入力文字を全て消去
+Ctrl + k				: 右側にある入力文字を全て消去
+Ctrl + w				: 左側の文字列を消去
+Ctrl + v				: カーソルの文字列を消去
+Ctrl + y				: 削除した文字列を貼り付ける
+Ctrl + l				: 画面をクリア
+Ctrl + x u				: Undo
 
-[enhancd]
-cd	: 履歴から検索して移動
-cd ..	: 親ディレクトリから検索して移動
+\e[36m[ enhancd ]\e[m
+cd						: 履歴から検索して移動
+cd ..					: 親ディレクトリから検索して移動
+
+\e[36m[ Commands ]\e[m
+tldr  command			: わかりやすいman コマンド
+bat   file				: 色付き、Git diff 付きのcat コマンド
+mdcat file.md			: md ファイルを整形して表示
+rg    pattern directory	: 高速なgrep。デフォルトでディレクトリ再帰検索。
+
+\e[36m[ Mac ]\e[m
+Control + 単語をclick	:単語を選択
+単語を右click			:単語を選択
 "

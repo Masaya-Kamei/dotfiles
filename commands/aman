@@ -1,43 +1,43 @@
 #!/bin/zsh
 
 echo "
-ls	= ls -FG
-ll	= ls -alFG
-c	= clear
-m	= mkdir
+ls		= ls -FG
+ll		= ls -alFG
+c		= clear
+m		= mkdir
 relogin	= exec \$SHELL -l
-t	= tar -xvf
-tgz	= tar -zxvf
-txz	= tar -Jxvf
-tbz	= tar -jxvf
-C	= | pbcopy
-G	= | grep --color=auto
-H	= | head
-L	= | less --tabs=4 -RFX
-T	= | tail
-W	= | wc -l
-X	= | xargs
-g	= git
-ga	= git add
-gd	= git diff
-gs	= git status
-gp	= git push
-gb	= git branch
-gst	= git status
-gco	= git checkout
-gf	= git fetch
-gc	= git commit
-gcm	= git_commit_m
-d	= docker
-dco	= docker-compose
-k	= kubectl
-rm	= gomi
-cdu	= cd-gitroot
+t		= tar -xvf
+tgz		= tar -zxvf
+txz		= tar -Jxvf
+tbz		= tar -jxvf
+C		= | pbcopy
+G		= | grep --color=auto
+H		= | head
+L		= | less --tabs=4 -RFX
+T		= | tail
+W		= | wc -l
+X		= | xargs
+g		= git
+ga		= git add
+gd		= git diff
+gs		= git status
+gp		= git push
+gb		= git branch
+gst		= git status
+gco		= git checkout
+gf		= git fetch
+gc		= git commit
+gcm		= git_commit_m
+d		= docker
+dco		= docker-compose
+k		= kubectl
+rm		= gomi
+cdu		= cd-gitroot
 froot	= find_root
-ms	= makescript
-goo	= google
-fmemo	= find_memo_txt
-ftitle	= find_memo_title
-fsites	= find_sites_title
-fhtml	= find_sites_html
+ms		= makescript
+goo		= google
+mtext	= memo_text_code
+mtitle	= memo_title_code
+mout	= memo_title_out
+mdout	= memo_md_out
 "

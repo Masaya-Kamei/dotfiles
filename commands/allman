@@ -5,4 +5,5 @@ aman	: alias
 fman	: fzf function
 tman	: terminal shortcut
 vman	: vim shortcut
+cman	: vscode shortcut
 "
