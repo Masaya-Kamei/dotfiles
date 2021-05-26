@@ -163,6 +163,8 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
 alias gwww='gcc -Wall -Wextra -Werror'
+alias gaddr='gcc -g -fsanitize=address'
+alias gwaddr='gcc -Wall -Wextra -Werror -g -fsanitize=address'
 alias norm="norminette"
 alias normr='norminette -R CheckForbiddenSourceHeader'
 alias norm_git="git ls-files | xargs norminette"
