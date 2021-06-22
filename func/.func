@@ -5,14 +5,14 @@ git_commit_m() { git commit -m "$*" }
 
 makescript() {
 	if [ $# -ne 2 ]; then
-		echo "Usage: makecmd [HistSize] [CommandName]"
+		echo "Usage: makescript [HistSize] [ScriptName]"
 		return 0
 	fi
 	count=$1
 	name=$2
 	expr $count + 1 > /dev/null 2>&1
 	if [ $? -eq 2 ] ; then
-		echo "Usage: makecmd [HistSize] [CommandName]"
+		echo "Usage: makescript [HistSize] [ScriptName]"
 		return 0
 	fi
 	if [ -e $name ]; then
@@ -116,34 +116,3 @@ memo_md_out() {
 	fi
 	find $d -name "*.md" | xargs mdcat | grep_memo $* | ghead -n -2
 }
-
-# find_sites_title() {
-# 	d=~/Documents/sites
-# 	t=translate.google.com
-# 	# p = ^(?=.*$*)(?!.*$t).*$		($* は含むが、$t は含まない)
-# 	# p はシングルクォーテーションで囲まれた文字列となる
-# 	p=`echo -n \^\(\?=\.\*$*\)\(\?\!\.\*$t\)\.\*\$`
-# 	# ! を使用する際は, ダブルクォーテーションではなく、シングルクォーテーションで囲む
-# 	# ! -> !の次にくる文字列から始まる一番最近使用したコマンドを自動で呼び出す
-# 	g=`ggrep -riP $p --include='*.html' $d`
-# 	if [ $? -eq 1 ]; then
-# 		return 0
-# 	fi
-# 	echo $g | sed -r "s/.*>(.*)<\/A>/\1/"
-# 	echo -n $* | pbcopy
-# 	# -P :perl正規表現 (拡張正規表現より、機能が多い)
-# 	ggrep -riPl $p --include='*.html' $d | xargs open
-# }
-
-# find_sites_html() {
-# 	d=~/Documents/sites
-# 	t=translate.google.com
-# 	p=`echo -n \^\(\?=\.\*$*\)\(\?\!\.\*$t\)\.\*\$`
-# 	g=`ggrep -riP $p --include='*.html' $d`
-# 	if [ $? -eq 1 ]; then
-# 		return 0
-# 	fi
-# 	echo $g | sed -r "s/.*>(.*)<\/A>/\1/"
-# 	echo -n $* | pbcopy
-# 	ggrep -riP $p --include='*.html' $d | sed -r "s/.*HREF=\"(.*)\" ADD.*/\1/" | xargs open
-# }

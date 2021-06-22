@@ -1,5 +1,6 @@
 ahmadalli.vscode-nginx-conf
 alefragnani.Bookmarks
+arcticicestudio.nord-visual-studio-code
 christian-kohler.path-intellisense
 chrmarti.regex
 CoenraadS.bracket-pair-colorizer
@@ -13,6 +14,7 @@ GitHub.vscode-pull-request-github
 Gruntfuggly.todo-tree
 hangxingliu.vscode-nginx-conf-hint
 IBM.output-colorizer
+joaompinto.vscode-graphviz
 jwoelper.theme-miami
 kube.42header
 maziac.asm-code-lens
@@ -25,6 +27,7 @@ ms-python.python
 ms-toolsai.jupyter
 ms-vscode-remote.remote-containers
 ms-vscode.cpptools
+mushan.vscode-paste-image
 naumovs.color-highlight
 nobuhito.printcode
 raynigon.nginx-formatter
@@ -34,6 +37,8 @@ redhat.vscode-yaml
 ryu1kn.partial-diff
 shd101wyy.markdown-preview-enhanced
 tomoki1207.pdf
+tomoki1207.vscode-input-sequence
+vadimcn.vscode-lldb
 vmsynkov.colonize
 vscodevim.vim
 wayou.vscode-todo-highlight

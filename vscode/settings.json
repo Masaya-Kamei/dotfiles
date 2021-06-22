@@ -41,49 +41,11 @@
 	"color-highlight.markerType": "dot-after",
 	// todo-treeのハイライトを無効化、todo-highlightを使う
 	"todo-tree.highlights.enabled": false,
-	// 特定の文字列をハイライトする
-	"highlight.regexes": {
-		// 括弧で囲む必要がある、エスケープは\\
-		"(- .* -\n)": {
-			"regexFlags": "gi", // g:全ての一致を探す,i:大文字小文字を区別しない
-			"filterLanguageRegex": "plaintext",
-			"filterFileRegex": ".*\\.txt",
-			"decorations": [
-				{	// １つ目の括弧
-					"color": "#ffcc00",
-					"fontWeight": "bold"
-					// "overviewRulerColor": "#ff0000",
-					// "backgroundColor": "#ff0000",
-				}
-				// { "color": "red" }	// ２つ目の括弧
-			]
-		},
-		"(\n\\[ .* \\])": {
-			"regexFlags": "gi",
-			"filterLanguageRegex": "plaintext",
-			"filterFileRegex": ".*\\.txt",
-			"decorations": [
-				{
-					"color": "#AFEEEE",
-				}
-			]
-		},
-		"(\n\\http.*)": {
-			"regexFlags": "gi",
-			"filterLanguageRegex": "plaintext",
-			"filterFileRegex": ".*\\.txt",
-			"decorations": [
-				{
-					"color": "#FFE4C4",
-				}
-			]
-		}
-	},
 	// クラッシュしないために最大値を設定
 	"highlight.maxMatches": 250,
 	// TerminalのアプリをiTerm に設定
 	"terminal.external.osxExec": "iTerm.app",
-	"workbench.colorTheme": "Miami",
+	"workbench.colorTheme": "Nord",
 	"terminal.explorerKind": "external",
 	"C_Cpp.updateChannel": "Insiders",
 	"vs-kubernetes": {
@@ -99,6 +61,8 @@
 	"markdown-preview-enhanced.previewTheme": "vue.css",
 	// ターミナルのカーソルタイプを縦線にする
 	"terminal.integrated.cursorStyle": "line",
+	// カーソル幅を変更、zoomが100%未満だとカーソルがghost化するのを防ぐ
+	"terminal.integrated.cursorWidth": 2,
 	// Terminal Theme :Eighties
 	"workbench.colorCustomizations": {
 		"terminal.background":"#2D2D2D",
@@ -122,5 +86,5 @@
 		"terminal.ansiWhite":"#D3D0C8",
 		"terminal.ansiYellow":"#FFCC66"
 	},
-	"window.zoomLevel": 0
+	"window.zoomLevel": -0.5227586988632231,
 }

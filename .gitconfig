@@ -17,3 +17,5 @@
 	diffFilter = diff-so-fancy --patch
 [core]
 	editor = vim
+[init]
+	defaultBranch = main

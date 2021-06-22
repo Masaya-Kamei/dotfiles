@@ -1,15 +1,3 @@
-# setopt PROMPT_SUBST
-
-# if [ "$PROMPT" != "" ]; then
-#     git_branch() {
-#         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-#     }
-#     git_color() {
-#         [[ -n $(git status --porcelain=v2 2>/dev/null) ]] && echo red || echo green
-#     }
-#     PROMPT='%F{$(git_color)}$(git_branch)%f %F{cyan}%c%f $ '
-# fi
-
 # emacs風のキーバインド, vscodeのターミナルで必要
 bindkey -e
 
@@ -53,10 +41,7 @@ autoload -Uz _zinit
 zinit light zsh-users/zsh-autosuggestions
 # ctrl+Enter で提案を実行
 # -> vscodeのterminal でも動くように, karabiner で, ctrl+Enter -> ^[M とバインド
-# ^[M  割り当てなし
 bindkey '^[M' autosuggest-execute
-# ^M  accept-line に割り当てると、Enterが効かなくなる
-# ^J  accept-line
 bindkey '^J' autosuggest-accept
 # シンタックスハイライト
 zinit light zdharma/fast-syntax-highlighting
@@ -131,14 +116,8 @@ my_kill_word() {
 	fi
 }
 zle -N my_kill_word
-# ^Q, ^S は割り当ててても動作しない
-# ^V  quoted-insert
 bindkey '^V' my_kill_word
-
-# ^U kill-whole-line
 bindkey '^U' backward-kill-line
-
-# ^G set-mark-command
 # markをセットして、regionをactiveにする。
 bindkey '^G' set-mark-command
 # region は mark と現在のカーソル位置にはさまれた部分
@@ -149,14 +128,11 @@ function copy-region() {
     REGION_ACTIVE=0
 }
 zle -N copy-region
-# ^Y yank
 # region をコピー
 bindkey "^Y" copy-region
-# ^P up-line-or-history
 # emacs では、yank はペースト
 bindkey "^P" yank
 
-# いずれも割り当てなし
 bindkey '^[[1;5A' beginning-of-line
 bindkey '^[[1;5B' end-of-line
 bindkey '^[[1;5C' forward-word
