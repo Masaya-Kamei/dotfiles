@@ -6,11 +6,6 @@ for file in "${dotfiles[@]}"; do
     ln -svf ~/dotfiles/$file ~/
 done
 
-commands=(allman fman aman vman tman cman)
-for c in "${commands[@]}"; do
-	ln -svf ~/dotfiles/commands/$c /usr/local/bin/
-done
-
 vscode_settings=(setting.json keybindings.json)
 for v in "${vscode_settings[@]}"; do
 	rm ~/Library/Application\ Support/Code/User/$v
