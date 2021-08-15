@@ -33,70 +33,71 @@ google() {
 	open $url -a "Google Chrome"
 }
 
-memo_text_code() {
-	if [ $# -ne 1 ]; then
-		echo -e "No argument."
-		return 0
-	fi
-	d=~/Documents/memo
-	grep -rin $* --include='*.txt' $d
-	if [ $? -eq 0 ]; then
-		echo -n $* | pbcopy
-		code ~/Documents/memo
-		# 行数を開くため、grep -l は使用しない
-		# xargs を入れないとエラー
-		# なぜなら、パイプで標準入力に変わるので、
-		# それ以前の結果が中身のファイルが渡されて、それをvscodeで開こうとする。
-		grep -rinE $* --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
-	fi
-}
+# memo_text_code() {
+# 	if [ $# -ne 1 ]; then
+# 		echo -e "No argument."
+# 		return 0
+# 	fi
+# 	d=~/Documents/memo
+# 	grep -rin $* --include='*.txt' $d
+# 	if [ $? -eq 0 ]; then
+# 		echo -n $* | pbcopy
+# 		code ~/Documents/memo
+# 		# 行数を開くため、grep -l は使用しない
+# 		# xargs を入れないとエラー
+# 		# なぜなら、パイプで標準入力に変わるので、
+# 		# それ以前の結果が中身のファイルが渡されて、それをvscodeで開こうとする。
+# 		grep -rinE $* --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
+# 	fi
+# }
 
-memo_title_code() {
-	if [ $# -ne 1 ]; then
-		echo -e "No argument."
-		return 0
-	fi
-	# "~/Documents/memo" とダブルクォーテーションで囲むとうまくいかない
-	d=~/Documents/memo
-	# cut コマンドの終了ステータスを使わないようにするため、一度変数に入れる
-	g=`grep -rinE "\- .*$*.* \-" --include='*.txt' $d`
-	if [ $? -eq 1 ]; then
-		return 0
-	fi
-	echo $g | cut -d "	" -f 1
-	echo -n $* | pbcopy
-	code $d
-	# 最初にマッチしたコードの場所が開かれる。
-	# なぜなら、codeコマンドに、空白区切りの複数ファイルが渡されるため。
-	grep -rinE "\- .*$*.* \-" --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
-}
+# memo_title_code() {
+# 	if [ $# -ne 1 ]; then
+# 		echo -e "No argument."
+# 		return 0
+# 	fi
+# 	# "~/Documents/memo" とダブルクォーテーションで囲むとうまくいかない
+# 	d=~/Documents/memo
+# 	# cut コマンドの終了ステータスを使わないようにするため、一度変数に入れる
+# 	g=`grep -rinE "\- .*$*.* \-" --include='*.txt' $d`
+# 	if [ $? -eq 1 ]; then
+# 		return 0
+# 	fi
+# 	echo $g | cut -d "	" -f 1
+# 	echo -n $* | pbcopy
+# 	code $d
+# 	# 最初にマッチしたコードの場所が開かれる。
+# 	# なぜなら、codeコマンドに、空白区切りの複数ファイルが渡されるため。
+# 	grep -rinE "\- .*$*.* \-" --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
+# }
 
-memo_title_out() {
-	if [ $# -ne 1 ]; then
-		echo -e "No argument."
-		return 0
-	fi
-	d=~/Documents/memo
-	g=`grep -rilE "\- .*$*.* \-" --include='*.txt' ~/Documents/memo`
-	if [ $? -eq 1 ]; then
-		return 0
-	fi
-	python -c 'print "#" * 80'
-	echo $g | xargs sed -n -E -e "/- .*$*.* -/,/#####/p" | ghead -n -2
-}
+# memo_title_out() {
+# 	if [ $# -ne 1 ]; then
+# 		echo -e "No argument."
+# 		return 0
+# 	fi
+# 	d=~/Documents/memo
+# 	g=`grep -rilE "\- .*$*.* \-" --include='*.txt' ~/Documents/memo`
+# 	if [ $? -eq 1 ]; then
+# 		return 0
+# 	fi
+# 	python -c 'print "#" * 80'
+# 	echo $g | xargs sed -n -E -e "/- .*$*.* -/,/#####/p" | ghead -n -2
+# }
 
 grep_memo() {
   flag=0
   while read -r line
   do
-	if [[ $line =~  ┄┄.* ]]; then
-		if [ $flag -eq 1 ]; then
-			python -c 'print "\033[33m" + "-" * 80 + "\033[0m"'
-			flag=0
-		fi
+	if [[ $line =~  ┄.* && $flag -eq 1 ]]; then
+		flag=0
 	fi
-	if [[ $line =~ ┄┄.*$*.* ]]; then
-		flag=1
+	if [[ $line =~ ┄┄.* ]]; then
+		g=`echo $line | grep -iE $*`
+		if [ $? -eq 0 ]; then
+			python -c 'print "\033[33m" + "-" * 80 + "\033[0m"'
+			flag=1
+		fi
 	fi
 	if [ $flag -eq 1 ]; then
 		echo $line
@@ -114,5 +115,21 @@ memo_md_out() {
 	if [ $? -eq 1 ]; then
 		return 0
 	fi
-	find $d -name "*.md" | xargs mdcat | grep_memo $* | ghead -n -2
+	echo $g | xargs mdcat | grep_memo $* | gtail -n +2
+}
+
+memo_md_code() {
+	if [ $# -ne 1 ]; then
+		echo -e "No argument."
+		return 0
+	fi
+	d=~/Documents/memo
+	g=`grep -rinE "## .*$*.*" $d`
+	if [ $? -eq 1 ]; then
+		return 0
+	fi
+	echo $g
+	echo -n $* | pbcopy
+	code $d
+	echo $g | cut -d ":" -f -2 | xargs code -g
 }
