@@ -54,7 +54,9 @@
 	},
 	"markdownlint.config": {
 		// inline HTML を許容する
-		"MD033": false
+		"MD033": false,
+		// 同じ内容の複数の見出しを許容する
+		"MD024": false
 	},
 	// export する際、preview の画面をそのまま出力する
 	"markdown-preview-enhanced.printBackground": true,
@@ -86,5 +88,7 @@
 		"terminal.ansiWhite":"#D3D0C8",
 		"terminal.ansiYellow":"#FFCC66"
 	},
-	"window.zoomLevel": -0.5227586988632231,
+	"markdown-preview-enhanced.enableExtendedTableSyntax": true,
+	"redhat.telemetry.enabled": true,
+	"window.zoomLevel": -0.5227586988632231
 }
