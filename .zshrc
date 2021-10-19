@@ -79,6 +79,8 @@ setopt hist_ignore_all_dups
 setopt share_history
 # 余計な空白は除去してhistoryに記録
 setopt hist_reduce_blanks
+# ディレクトリであれば、cd を省略
+setopt AUTO_CD
 # 補完機能を有効にする
 autoload -Uz compinit && compinit
 # タブ補完する際、大文字小文字を区別しない
@@ -95,6 +97,9 @@ export DIRENV_WARN_TIMEOUT=100s
 # autoload -Uz makescript
 source ~/dotfiles/func/.func
 source ~/dotfiles/func/.fzf_func
+
+# clang はLLVM のものを使用 (-fsanitize=leak を使用するため)
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # hook chpwd :カレントディレクトリが変更したとき
 chpwd() { ls -FG }
