@@ -13,18 +13,20 @@ brew "coreutils"
 brew "diff-so-fancy"
 brew "direnv"
 brew "findutils"
+brew "git"
 brew "glow"
 brew "gnu-sed"
 brew "librsvg"
 brew "graphviz"
 brew "grep"
-brew "hyperkit", link: false
+brew "hyperkit"
 brew "tcl-tk"
 brew "libheif"
 brew "imagemagick"
 brew "jq"
 brew "krb5"
 brew "lftp"
+brew "llvm"
 brew "lynx"
 brew "markdown"
 brew "mas"
@@ -32,6 +34,8 @@ brew "mdcat"
 brew "minikube"
 brew "mono"
 brew "nasm"
+brew "neofetch"
+brew "nkf"
 brew "node-build"
 brew "nodenv"
 brew "peco"
@@ -45,14 +49,4 @@ brew "wget"
 brew "yarn"
 brew "b4b4r07/tap/gomi"
 brew "heroku/brew/heroku"
-mas "BetterSnapTool", id: 417375580
-mas "HyperDock", id: 449830122
-mas "Key Codes", id: 414568915
-mas "Keynote", id: 409183694
-mas "LINE", id: 539883307
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "ScreenPointer", id: 1368204906
-mas "Slack", id: 803453959
-mas "ToyViewer", id: 414298354
-mas "Xcode", id: 497799835
+cask "xquartz"
