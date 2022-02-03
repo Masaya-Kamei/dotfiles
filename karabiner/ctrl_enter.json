@@ -3,7 +3,7 @@
   "rules":
   [
     {
-      "description": "Ctrl Enter",
+      "description": "Ctrl Enter -> Esc shift m",
       "manipulators": [
         {
           "type": "basic",
