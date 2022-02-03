@@ -12,6 +12,13 @@ eval "$(rbenv init -)"
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 
+# goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
+
 # iterm shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -85,6 +92,8 @@ setopt AUTO_CD
 autoload -Uz compinit && compinit
 # タブ補完する際、大文字小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# タブ補完する際、カーソルキーで選択
+zstyle ':completion:*:default' menu select=1
 # タブ幅を４に設定
 tabs -4
 # WORDCHARS にある文字は単語区切り(Ctrl+wなど)の際に無視される。
@@ -99,10 +108,14 @@ source ~/dotfiles/func/.func
 source ~/dotfiles/func/.fzf_func
 
 # clang はLLVM のものを使用 (-fsanitize=leak を使用するため)
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # hook chpwd :カレントディレクトリが変更したとき
 chpwd() { ls -FG }
+
+# 右矢印キーの際に全てではなく、１文字を受け入れる。
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
 my_kill_word() {
 	if [ -z ${LBUFFER} ]; then return 0
