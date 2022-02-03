@@ -41,7 +41,7 @@
 		"when": "textInputFocus"
 	},
 	{
-		"key": "ctrl+cmd+up",
+		"key": "home",
 		"command": "cursorTop",
 		"when": "textInputFocus"
 	},
@@ -51,7 +51,7 @@
 		"when": "textInputFocus"
 	},
 	{
-		"key": "ctrl+cmd+down",
+		"key": "end",
 		"command": "cursorBottom",
 		"when": "textInputFocus"
 	},
@@ -96,5 +96,45 @@
 	{
 		"key": "ctrl+[Equal]",
 		"command": "workbench.action.terminal.focus"
+	},
+	{
+		"key": "cmd+enter",
+		"command": "explorer.openToSide",
+		"when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+	},
+	{
+		"key": "ctrl+enter",
+		"command": "-explorer.openToSide",
+		"when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+	},
+	{
+		"key": "cmd+down",
+		"command": "search.action.focusNextSearchResult",
+		"when": "hasSearchResult || inSearchEditor"
+	},
+	{
+		"key": "f4",
+		"command": "-search.action.focusNextSearchResult",
+		"when": "hasSearchResult || inSearchEditor"
+	},
+	{
+		"key": "cmd+up",
+		"command": "search.action.focusPreviousSearchResult",
+		"when": "hasSearchResult || inSearchEditor"
+	},
+	{
+		"key": "shift+f4",
+		"command": "-search.action.focusPreviousSearchResult",
+		"when": "hasSearchResult || inSearchEditor"
+	},
+	{
+		"key": "cmd+down",
+		"command": "-cursorBottom",
+		"when": "textInputFocus"
+	},
+	{
+		"key": "cmd+up",
+		"command": "-cursorTop",
+		"when": "textInputFocus"
 	}
 ]

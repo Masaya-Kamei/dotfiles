@@ -1,6 +1,10 @@
 {
 	// 保存する際、末尾の空白を削除
 	"files.trimTrailingWhitespace": true,
+	"[markdown]": {
+        // markdownは 行末の半角スペース2つで改行なので、消さないようにする
+        "files.trimTrailingWhitespace": false,
+    },
 	// 保存する際、最終行に空行を入れる。
 	"files.insertFinalNewline": true,
 	// 折り返しする
@@ -46,8 +50,6 @@
 	// TerminalのアプリをiTerm に設定
 	"terminal.external.osxExec": "iTerm.app",
 	"workbench.colorTheme": "Nord",
-	"terminal.explorerKind": "external",
-	"C_Cpp.updateChannel": "Insiders",
 	"vs-kubernetes": {
 		"vscode-kubernetes.minikube-path.mac": "/Users/kamei/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
 		"vscode-kubernetes.helm-path.mac": "/Users/kamei/.vs-kubernetes/tools/helm/darwin-amd64/helm"
@@ -56,7 +58,17 @@
 		// inline HTML を許容する
 		"MD033": false,
 		// 同じ内容の複数の見出しを許容する
-		"MD024": false
+		"MD024": false,
+		// 最初の行は見出し1でなくてもよい
+		"MD041": false,
+		// 引用の間に空行を許容する。
+		"MD028": false,
+		// リストは、空行で囲まれている。
+		"MD032": false,
+		// ハードタブを許可
+		"MD010": false,
+		// ul_list のインデントが指定の数でなくてもOK
+		"MD007": false
 	},
 	// export する際、preview の画面をそのまま出力する
 	"markdown-preview-enhanced.printBackground": true,
@@ -90,5 +102,13 @@
 	},
 	"markdown-preview-enhanced.enableExtendedTableSyntax": true,
 	"redhat.telemetry.enabled": true,
-	"window.zoomLevel": -0.5227586988632231
+	"go.toolsEnvVars": {"GO111MODULE": "on"},
+	"gopls": {
+		"experimentalWorkspaceModule": true
+	},
+	"pasteImage.insertPattern": "<img src='${imageFileName}' width='100%'>",
+	"window.zoomLevel": 0,
+	"editor.copyWithSyntaxHighlighting": false,
+	"go.toolsManagement.autoUpdate": true,
+	"bracketPairColorizer.depreciation-notice": false
 }

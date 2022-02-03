@@ -2,7 +2,14 @@
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
+@font-face {
+	font-family: 'NotoSansJP';
+	src: url("file:///Users/kamei/Library/Fonts/NotoSansJP-Regular.otf");
+
+}
+
 .markdown-preview.markdown-preview {
+  font-family: "NotoSansJP";
   h1 {
 	font-size: large;
 	background: #dfefff;
@@ -21,7 +28,7 @@
   h3 {
 	font-size: small;
 	border-bottom: double 4px skyblue;
-	margin: 1.8em 0 0 0;
+	margin: 1.8em 0 1.8em 0;
   }
   p {
 	font-size: small;
@@ -38,9 +45,9 @@
 	// line-height: 50px;
 	// border-bottom: double 4px skyblue;
   }
-  h3 + * {
-    margin: 0.5em 1em;
-  }
+//   h3 + * {
+//     margin: 0.5em 1em;
+//   }
   td {
 	font-size: small;
   }
