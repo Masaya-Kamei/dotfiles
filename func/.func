@@ -2,6 +2,7 @@
 
 find_root() { find / -name System -prune -o $* -print 2>/dev/null }
 git_commit_m() { git commit -m "$*" }
+42code() { code `find ~/Documents/42tokyo/cursus -maxdepth 2 -name $*`}
 
 makescript() {
 	if [ $# -ne 2 ]; then
@@ -25,65 +26,9 @@ makescript() {
 }
 
 google() {
-    if [ $(echo $1 | grep "^-[cfs]$") ]; then
-        local opt=$1
-        shift
-    fi
-    local url="https://google.co.jp/search?q=${*// /+}"
-	open $url -a "Google Chrome"
+	url="https://google.co.jp/search?q=${@}"
+	/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome $url
 }
-
-# memo_text_code() {
-# 	if [ $# -ne 1 ]; then
-# 		echo -e "No argument."
-# 		return 0
-# 	fi
-# 	d=~/Documents/memo
-# 	grep -rin $* --include='*.txt' $d
-# 	if [ $? -eq 0 ]; then
-# 		echo -n $* | pbcopy
-# 		code ~/Documents/memo
-# 		# 行数を開くため、grep -l は使用しない
-# 		# xargs を入れないとエラー
-# 		# なぜなら、パイプで標準入力に変わるので、
-# 		# それ以前の結果が中身のファイルが渡されて、それをvscodeで開こうとする。
-# 		grep -rinE $* --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
-# 	fi
-# }
-
-# memo_title_code() {
-# 	if [ $# -ne 1 ]; then
-# 		echo -e "No argument."
-# 		return 0
-# 	fi
-# 	# "~/Documents/memo" とダブルクォーテーションで囲むとうまくいかない
-# 	d=~/Documents/memo
-# 	# cut コマンドの終了ステータスを使わないようにするため、一度変数に入れる
-# 	g=`grep -rinE "\- .*$*.* \-" --include='*.txt' $d`
-# 	if [ $? -eq 1 ]; then
-# 		return 0
-# 	fi
-# 	echo $g | cut -d "	" -f 1
-# 	echo -n $* | pbcopy
-# 	code $d
-# 	# 最初にマッチしたコードの場所が開かれる。
-# 	# なぜなら、codeコマンドに、空白区切りの複数ファイルが渡されるため。
-# 	grep -rinE "\- .*$*.* \-" --include='*.txt' $d | cut -d ":" -f -2 | xargs code -g
-# }
-
-# memo_title_out() {
-# 	if [ $# -ne 1 ]; then
-# 		echo -e "No argument."
-# 		return 0
-# 	fi
-# 	d=~/Documents/memo
-# 	g=`grep -rilE "\- .*$*.* \-" --include='*.txt' ~/Documents/memo`
-# 	if [ $? -eq 1 ]; then
-# 		return 0
-# 	fi
-# 	python -c 'print "#" * 80'
-# 	echo $g | xargs sed -n -E -e "/- .*$*.* -/,/#####/p" | ghead -n -2
-# }
 
 grep_memo() {
   flag=0
@@ -111,8 +56,8 @@ memo_md_out() {
 		echo -e "No argument."
 		return 0
 	fi
-	d=~/Documents/memo
-	g=`grep -rilE "## .*$*.*" $d`
+	d=~/Documents/memo/markdown
+	g=`rg -i "## .*$*.*" $d | cut -d ":" -f 1`
 	if [ $? -eq 1 ]; then
 		return 0
 	fi
@@ -124,8 +69,8 @@ memo_md_code() {
 		echo -e "No argument."
 		return 0
 	fi
-	d=~/Documents/memo
-	g=`grep -rinE "## .*$*.*" $d`
+	d=~/Documents/memo/markdown
+	g=`rg -i "## .*$*.*" $d | cut -d ":" -f 1`
 	if [ $? -eq 1 ]; then
 		return 0
 	fi
