@@ -3,7 +3,7 @@
 	"rules":
 	[
 		{
-			"description": "left_option を2回連打 -> 選択中のテキストで検索",
+			"description": "left_option を3回連打 -> 選択中のテキストで検索",
 			"manipulators": [
 			  {
 				"type": "basic",
@@ -11,6 +11,27 @@
 				"to": [
 				  { "shell_command": "automator ~/Library/Services/chrome_search.workflow/Contents/document.wflow"}
 				],
+				"conditions": [
+				  { "type": "variable_if", "name": "left_option_key_2", "value": 1 }
+				]
+			  },
+			  {
+				"type": "basic",
+				"from": {
+					"key_code": "left_option",
+					"modifiers": { "optional": [ "any" ] }
+				},
+				"to": [
+				  { "set_variable": { "name": "left_option_key_2", "value": 1 } }
+				],
+				"to_delayed_action": {
+					"to_if_invoked": [
+					  { "set_variable": { "name": "left_option_key_2", "value": 0 } }
+					],
+					"to_if_canceled": [
+					  { "set_variable": { "name": "left_option_key_2", "value": 0 } }
+					]
+				  },
 				"conditions": [
 				  { "type": "variable_if", "name": "left_option_key", "value": 1 }
 				]

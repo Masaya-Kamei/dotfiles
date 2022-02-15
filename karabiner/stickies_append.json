@@ -3,7 +3,7 @@
 	"rules":
 	[
 		{
-			"description": "left_shift を2回連打 -> 選択中のテキストをStickies に追記",
+			"description": "left_shift を3回連打 -> 選択中のテキストをStickies に追記",
 			"manipulators": [
 			  {
 				"type": "basic",
@@ -11,6 +11,28 @@
 				"to": [
 				  { "shell_command": "automator ~/Library/Services/stickies_append.workflow/Contents/document.wflow" }
 				],
+				"conditions": [
+				  { "type": "variable_if", "name": "left_shift_key_2", "value": 1 }
+				]
+			  },
+			  {
+				"type": "basic",
+				"from": {
+				  "key_code": "left_shift",
+				  "modifiers": { "optional": [ "any" ] }
+				},
+				"to": [
+				  { "set_variable": { "name": "left_shift_key_2", "value": 1 } },
+				  { "key_code": "left_shift" }
+				],
+				"to_delayed_action": {
+				  "to_if_invoked": [
+					{ "set_variable": { "name": "left_shift_key_2", "value": 0 } }
+				  ],
+				  "to_if_canceled": [
+					{ "set_variable": { "name": "left_shift_key_2", "value": 0 } }
+				  ]
+				},
 				"conditions": [
 				  { "type": "variable_if", "name": "left_shift_key", "value": 1 }
 				]
