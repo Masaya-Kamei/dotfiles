@@ -19,6 +19,12 @@ eval "$(goenv init -)"
 export PATH="$GOROOT/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
 # iterm shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -184,6 +190,8 @@ alias -g X='| xargs'
 
 alias g='git'
 alias ga='git add'
+alias gl='git log'
+alias gr='git restore'
 alias gd='git diff'
 alias gs='git status'
 alias gp='git push'
