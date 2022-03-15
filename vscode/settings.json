@@ -107,8 +107,11 @@
 		"experimentalWorkspaceModule": true
 	},
 	"pasteImage.insertPattern": "<img src='${imageFileName}' width='100%'>",
-	"window.zoomLevel": 0,
 	"editor.copyWithSyntaxHighlighting": false,
 	"go.toolsManagement.autoUpdate": true,
-	"bracketPairColorizer.depreciation-notice": false
+	"bracketPairColorizer.depreciation-notice": false,
+	"gitlens.advanced.messages": {
+		"suppressImproperWorkspaceCasingWarning": true
+	},
+	"window.zoomLevel": -1
 }

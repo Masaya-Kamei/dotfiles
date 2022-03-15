@@ -3,6 +3,7 @@
 find_root() { find / -name System -prune -o $* -print 2>/dev/null }
 git_commit_m() { git commit -m "$*" }
 42code() { code `find ~/Documents/42tokyo/cursus -maxdepth 2 -name $*`}
+test42() { docker run -it --rm -w=/test -v $(git rev-parse --show-toplevel):/test test42 bash}
 
 makescript() {
 	if [ $# -ne 2 ]; then

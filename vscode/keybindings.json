@@ -136,5 +136,15 @@
 		"key": "cmd+up",
 		"command": "-cursorTop",
 		"when": "textInputFocus"
+	},
+	{
+		"key": "ctrl+cmd+m",
+		"command": "markdown.extension.editing.toggleMath",
+		"when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
+	},
+	{
+		"key": "cmd+m",
+		"command": "-markdown.extension.editing.toggleMath",
+		"when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
 	}
 ]
