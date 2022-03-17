@@ -29,6 +29,13 @@ eval "$(pyenv init -)"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+# brew doctor Warning
+export PATH="/usr/local/sbin:$PATH"
+alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
+
+# sanitizer  malloc nano zone error
+export MallocNanoZone=0
+
 # iterm shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
