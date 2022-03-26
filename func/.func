@@ -2,7 +2,7 @@
 
 find_root() { find / -name System -prune -o $* -print 2>/dev/null }
 git_commit_m() { git commit -m "$*" }
-42code() { code `find ~/Documents/42tokyo/cursus -maxdepth 2 -name $*`}
+42code() { code `find ~/Documents/42tokyo -maxdepth 3 -name $* | head -n 1`}
 mkcd() { mkdir $1 && cd $1 }
 
 test42() {
