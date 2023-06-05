@@ -29,6 +29,9 @@ eval "$(pyenv init -)"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+# asdf : version 管理ツール
+. /usr/local/opt/asdf/libexec/asdf.sh
+
 # brew doctor Warning
 export PATH="/usr/local/sbin:$PATH"
 alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"

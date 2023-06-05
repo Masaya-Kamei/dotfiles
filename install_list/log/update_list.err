@@ -1,0 +1,134 @@
+Running `brew update --preinstall`...
+==> Auto-updated Homebrew!
+Updated 2 taps (homebrew/core and homebrew/cask).
+==> Updated Formulae
+Updated 36 formulae.
+==> Updated Casks
+Updated 21 casks.
+
+Running `brew update --preinstall`...
+==> Auto-updated Homebrew!
+Updated Homebrew from b7a69ca5a to 9263d95bf.
+Updated 3 taps (homebrew/core, homebrew/cask and homebrew/bundle).
+==> New Formulae
+kopia
+webp-pixbuf-loader
+xidel
+==> Updated Formulae
+Updated 145 formulae.
+==> New Casks
+hackolade
+threema-work
+==> Updated Casks
+Updated 125 casks.
+==> Deleted Casks
+jiohome
+
+Running `brew update --preinstall`...
+==> Auto-updated Homebrew!
+Updated Homebrew from 9263d95bf to 374adf7f1.
+Updated 3 taps (homebrew/core, homebrew/cask and homebrew/bundle).
+==> New Formulae
+bk
+boost@1.76
+brev
+csview
+jless
+kdoctor
+kubescape
+kyverno
+linux-headers@5.16
+oh-my-posh
+terraform-lsp
+==> Updated Formulae
+Updated 403 formulae.
+==> Deleted Formulae
+go@1.10
+go@1.11
+go@1.12
+go@1.9
+hornetq
+==> New Casks
+devtoys
+openshift-client
+quit-all
+thinlinc-client
+ujam
+==> Updated Casks
+Updated 278 casks.
+==> Deleted Casks
+finisher-voodoo
+knox
+lilypond
+
+
+==> Homebrew was updated to version 3.3.15
+The changelog can be found at:
+  https://github.com/Homebrew/brew/releases/tag/3.3.15
+Running `brew update --preinstall`...
+==> Auto-updated Homebrew!
+Updated Homebrew from 374adf7f1 to 103cd0c94.
+Updated 2 taps (homebrew/core and homebrew/cask).
+==> Updated Formulae
+Updated 361 formulae.
+==> Updated Casks
+Updated 223 casks.
+
+
+==> Homebrew was updated to version 3.3.16
+The changelog can be found at:
+  https://github.com/Homebrew/brew/releases/tag/3.3.16
+Running `brew update --preinstall`...
+==> Auto-updated Homebrew!
+Updated Homebrew from 103cd0c94 to 3d689eb62.
+Updated 3 taps (homebrew/core, homebrew/cask and homebrew/bundle).
+==> New Formulae
+aarch64-elf-binutils
+aarch64-elf-gcc
+bkt
+cloudflared
+dpp
+dsq
+dynaconf
+gst-plugins-rs
+litani
+quick-lint-js
+rospo
+trzsz
+uutils-findutils
+wordle
+xkcd
+==> Updated Formulae
+Updated 442 formulae.
+==> Deleted Formulae
+advancemenu
+pdflib-lite
+==> New Casks
+gcc-aarch64-embedded
+iptvnator
+libcblite
+libcblite-community
+playdate-simulator
+==> Updated Casks
+Updated 274 casks.
+==> Deleted Casks
+now
+
+
+==> Homebrew was updated to version 3.4.0
+More detailed release notes are available on the Homebrew Blog:
+  https://brew.sh/blog/3.4.0
+Running `brew update --preinstall`...
+==> Auto-updated Homebrew!
+Updated Homebrew from fed93bb93 to 91701425c.
+Updated 2 taps (homebrew/core and homebrew/cask).
+==> New Formulae
+ltex-ls
+postgraphile
+==> Updated Formulae
+Updated 297 formulae.
+==> Deleted Formulae
+gstreamermm
+==> Updated Casks
+Updated 117 casks.
+

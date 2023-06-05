@@ -23,10 +23,18 @@
 	"terminal.integrated.fontFamily": "Ricty Diminished, monospace",
 	// 他人のファイルの場合、インデントの種類とサイズを引き継がない
 	"editor.detectIndentation": false,
-	// タブによるインデント
-	"editor.insertSpaces": false,
-	// タブのサイズを４
-	"editor.tabSize": 4,
+	"[c]": {
+		// タブによるインデント
+		"editor.insertSpaces": false,
+		// タブのサイズを４
+		"editor.tabSize": 4,
+    },
+	"[cpp]": {
+		// タブによるインデント
+		"editor.insertSpaces": false,
+		// タブのサイズを４
+		"editor.tabSize": 4,
+    },
 	// 空白文字を表示
 	"editor.renderWhitespace": "all",
 	"42header.username": "mkamei",
@@ -51,9 +59,9 @@
 	"terminal.external.osxExec": "iTerm.app",
 	"workbench.colorTheme": "Nord",
 	"vs-kubernetes": {
-		"vscode-kubernetes.minikube-path.mac": "/Users/kamei/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-		"vscode-kubernetes.helm-path.mac": "/Users/kamei/.vs-kubernetes/tools/helm/darwin-amd64/helm"
-	},
+    "vscode-kubernetes.minikube-path.mac": "/Users/kamei/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+    "vscode-kubernetes.helm-path.mac": "/Users/kamei/.vs-kubernetes/tools/helm/darwin-amd64/helm"
+  },
 	"markdownlint.config": {
 		// inline HTML を許容する
 		"MD033": false,
@@ -68,7 +76,11 @@
 		// ハードタブを許可
 		"MD010": false,
 		// ul_list のインデントが指定の数でなくてもOK
-		"MD007": false
+		"MD007": false,
+		// code ブロックが空行で囲まれていなくてもOK
+		"MD031": false,
+		// code ブロックの$ の次の行はコマンドの出力結果がなくてもOK。
+		"MD014": false,
 	},
 	// export する際、preview の画面をそのまま出力する
 	"markdown-preview-enhanced.printBackground": true,
@@ -109,9 +121,66 @@
 	"pasteImage.insertPattern": "<img src='${imageFileName}' width='100%'>",
 	"editor.copyWithSyntaxHighlighting": false,
 	"go.toolsManagement.autoUpdate": true,
-	"bracketPairColorizer.depreciation-notice": false,
-	"gitlens.advanced.messages": {
-		"suppressImproperWorkspaceCasingWarning": true
+	"cpplint.cpplintPath": "/Users/kamei/.pyenv/shims/cpplint",
+	"cpplint.lineLength": 120,
+	"cpplint.filters": [
+		"-legal/copyright",
+		"-whitespace/tab",
+		"-whitespace/newline",
+		"-whitespace/braces",
+		"-readability/braces",
+		"-build/header_guard",
+		"-build/include_subdir",
+		"-build/include",
+		"-runtime/int",
+		"-runtime/threadsafe_fn",
+		"-runtime/reference",
+		"-runtime/printf"
+  ],
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+	"editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true
 	},
-	"window.zoomLevel": -1
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": false,
+	"eslint.packageManager": "yarn",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+  "[graphql]": {
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "editor.tabSize": 2,
+  "workbench.iconTheme": "material-icon-theme",
+  "git.autofetch": true,
+  "githubPullRequests.pullBranch": "never",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "files.associations": {
+    ".eslintrc.json": "json"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "go.gopath": "~/go/1.19.5",
+  "window.zoomLevel": -0.4772413011367769,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": false,
+    "markdown": false
+  }
 }

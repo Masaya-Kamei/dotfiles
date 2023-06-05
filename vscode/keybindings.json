@@ -94,8 +94,9 @@
 		"when": "workbench.scm.active"
 	},
 	{
-		"key": "ctrl+[Equal]",
-		"command": "workbench.action.terminal.focus"
+		"key": "ctrl+[Semicolon]",
+		"command": "workbench.action.terminal.focus",
+		"when": "editorTextFocus"
 	},
 	{
 		"key": "cmd+enter",
@@ -146,5 +147,14 @@
 		"key": "cmd+m",
 		"command": "-markdown.extension.editing.toggleMath",
 		"when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
+	},
+	{
+		"key": "ctrl+[Semicolon]",
+		"command": "workbench.action.focusFirstEditorGroup",
+		"when": "terminalFocus"
+	},
+	{
+		"key": "ctrl+[Equal]",
+		"command": "workbench.action.terminal.focus"
 	}
 ]
